@@ -10,8 +10,8 @@ use Nodes\Backend\Auth\Contracts\CanResetPassword as CanResetPasswordContract;
 use Nodes\Backend\Models\User\Token\Token;
 use Nodes\CounterCache\CounterCacheable;
 use Nodes\CounterCache\Traits\CounterCache;
-use Nodes\Database\Eloquent\Model;
-use Nodes\Database\Exceptions\SaveFailedException;
+use Weatherbys\Database\Eloquent\Model;
+use Weatherbys\Database\Exceptions\SaveFailedException;
 
 /**
  * Class User.

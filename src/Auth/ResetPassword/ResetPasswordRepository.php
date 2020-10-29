@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\MessageBag;
-use Nodes\Database\Eloquent\Repository as NodesRepository;
+use Weatherbys\Database\Eloquent\Repository as NodesRepository;
 
 /**
  * Class ResetPasswordRepository.

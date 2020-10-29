@@ -2,7 +2,7 @@
 
 namespace Nodes\Backend\Models\Role;
 
-use Nodes\Database\Eloquent\Repository as NodesRepository;
+use Weatherbys\Database\Eloquent\Repository as NodesRepository;
 use Nodes\Exceptions\Exception;
 
 /**
@@ -89,7 +89,7 @@ class RoleRepository extends NodesRepository
     /**
      * @author Casper Rasmussen <cr@nodes.dk>
      * @return \Nodes\Backend\Models\Role\Role
-     * @throws \Nodes\Database\Exceptions\EntityNotFoundException
+     * @throws \Weatherbys\Database\Exceptions\EntityNotFoundException
      */
     public function getDefaultRole()
     {

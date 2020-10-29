@@ -2,7 +2,7 @@
 
 namespace Nodes\Backend\Models\User\Token;
 
-use Nodes\Database\Eloquent\Model;
+use Weatherbys\Database\Eloquent\Model;
 
 /**
  * Class Token.

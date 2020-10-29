@@ -2,8 +2,8 @@
 
 namespace Nodes\Backend\Models\FailedJob;
 
-use Nodes\Database\Eloquent\Model;
-use Nodes\Database\Support\Traits\Date;
+use Weatherbys\Database\Eloquent\Model;
+use Weatherbys\Database\Support\Traits\Date;
 
 /**
  * Class FailedJob.

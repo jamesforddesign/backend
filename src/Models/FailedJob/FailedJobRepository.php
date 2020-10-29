@@ -2,7 +2,7 @@
 
 namespace Nodes\Backend\Models\FailedJob;
 
-use Nodes\Database\Eloquent\Repository as NodesRepository;
+use Weatherbys\Database\Eloquent\Repository as NodesRepository;
 
 /**
  * Class FailedJobRepository.

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Nodes\Backend\Auth\Exceptions\InvalidPasswordException;
-use Nodes\Database\Eloquent\Repository;
-use Nodes\Database\Exceptions\SaveFailedException;
+use Weatherbys\Database\Eloquent\Repository;
+use Weatherbys\Database\Exceptions\SaveFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**

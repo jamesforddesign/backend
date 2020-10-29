@@ -3,7 +3,7 @@
 namespace Nodes\Backend\Models\Role;
 
 use Nodes\Backend\Models\User\User;
-use Nodes\Database\Eloquent\Model;
+use Weatherbys\Database\Eloquent\Model;
 
 /**
  * Class Role.
