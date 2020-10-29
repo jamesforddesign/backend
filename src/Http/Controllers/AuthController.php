@@ -153,12 +153,12 @@ class AuthController extends Controller
             // Redirect into backend
             return $this->redirectSuccess(null, Cookie::get('url_to_redirect_to_after_user_login'));
         } catch (Exception $e) {
-            try {
-                // Notify bugsnag
-                app('nodes.bugsnag')->notifyException($e, null, 'error');
-            } catch (Exception $e) {
-                // Fail silent
-            }
+            // try {
+            //     // Notify bugsnag
+            //     app('nodes.bugsnag')->notifyException($e, null, 'error');
+            // } catch (Exception $e) {
+            //     // Fail silent
+            // }
 
             // Redirect to login form
             return redirect()->route('nodes.backend.login.form')->with('error', 'Failed to login through manager');

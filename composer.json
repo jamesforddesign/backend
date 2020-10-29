@@ -29,22 +29,14 @@
             "role": "Designer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jamesforddesign/assets"
-        }
-    ],
     "require": {
         "composer-plugin-api": "^1.0",
         "laravel/framework": ">=5.4.0 <6.19.0",
         "laravelcollective/html": "5.5.*||5.6.*||5.7.*||5.8.*||6.0.*",
         "nodes/core": "^1.0",
-        "nodes/assets": "dev-laravel-6",
         "nodes/database": "^1.0",
         "nodes/validation": "^1.0",
         "nodes/cache": "^1.0",
-        "nodes/bugsnag": "^1.0||^2.0",
         "nodes/counter-cache": "^2.0"
     },
     "autoload": {
