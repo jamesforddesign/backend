@@ -34,7 +34,6 @@
         "laravel/framework": ">=5.8.0",
         "laravelcollective/html": "5.8.*||6.0.*",
         "nodes/core": "^1.0",
-        "nodes/validation": "^1.0",
         "nodes/counter-cache": "^2.0"
     },
     "autoload": {

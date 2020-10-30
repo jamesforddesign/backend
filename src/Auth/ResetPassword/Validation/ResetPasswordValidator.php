@@ -3,7 +3,7 @@
 
 namespace Nodes\Backend\Auth\ResetPassword\Validation;
 
-use Nodes\Validation\AbstractValidator;
+use Weatherbys\Validation\AbstractValidator;
 
 /**
  * Class ResetPasswordValidator

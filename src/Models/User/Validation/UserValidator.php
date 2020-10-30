@@ -2,7 +2,7 @@
 
 namespace Nodes\Backend\Models\User\Validation;
 
-use Nodes\Validation\AbstractValidator;
+use Weatherbys\Validation\AbstractValidator;
 
 /**
  * Class UserValidation.

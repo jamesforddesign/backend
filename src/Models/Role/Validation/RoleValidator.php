@@ -2,7 +2,7 @@
 
 namespace Nodes\Backend\Models\Role\Validation;
 
-use Nodes\Validation\AbstractValidator;
+use Weatherbys\Validation\AbstractValidator;
 
 /**
  * Class RoleValidator.
