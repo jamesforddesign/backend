@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Nodes\Backend\Auth\Contracts\Authenticatable as AuthenticatableContract;
 use Nodes\Backend\Auth\Contracts\CanResetPassword as CanResetPasswordContract;
 use Nodes\Backend\Models\User\Token\Token;
-use Nodes\CounterCache\CounterCacheable;
-use Nodes\CounterCache\Traits\CounterCache;
+use Weatherbys\CounterCache\CounterCacheable;
+use Weatherbys\CounterCache\Traits\CounterCache;
 use Weatherbys\Database\Eloquent\Model;
 use Weatherbys\Database\Exceptions\SaveFailedException;
 
