@@ -30,16 +30,16 @@
         }
     ],
     "require": {
-        "composer-plugin-api": "^1.0",
-        "laravel/framework": ">=5.4.0 <6.15.0",
-        "laravelcollective/html": "5.5.*||5.6.*||5.7.*||5.8.*||6.0.*",
-        "nodes/core": "^1.0",
-        "nodes/assets": "^1.0",
-        "nodes/database": "^1.0",
-        "nodes/validation": "^1.0",
-        "nodes/cache": "^1.0",
-        "nodes/bugsnag": "^1.0||^2.0",
-        "nodes/counter-cache": "^2.0"
+        "composer-plugin-api": "2.*",
+        "laravel/framework": "^9.0",
+        "laravelcollective/html": "^v6.3.0",
+        "nodes/core": "dev-php-8-1",
+        "nodes/assets": "dev-php-8-1",
+        "nodes/database": "dev-php-8-1",
+        "nodes/validation": "dev-php-8-1",
+        "nodes/cache": "dev-php-8-1",
+        "nodes/bugsnag": "dev-php-8-1",
+        "nodes/counter-cache": "dev-php-8-1"
     },
     "autoload": {
         "psr-4": {
@@ -50,5 +50,35 @@
             "src/Support/Helpers/Router.php",
             "src/Support/Helpers/QueryRestorer.php"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/core"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/cache"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/assets"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/nodes-database"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/nodes-validation"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/nodes-bugsnag"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jamesforddesign/counter-cache"
+        }
+    ]
 }
