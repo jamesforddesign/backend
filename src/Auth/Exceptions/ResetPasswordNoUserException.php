@@ -1,6 +1,6 @@
 <?php
 
-namespace Nodes\Backend\Auth\Exception;
+namespace Nodes\Backend\Auth\Exceptions;
 
 use Nodes\Exceptions\Exception;
 

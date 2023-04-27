@@ -75,7 +75,7 @@ class ResetPasswordRepository extends NodesRepository
      *
      * @param  array $conditions WHERE conditions to locate user. Format: ['column' => 'value']
      * @return bool
-     * @throws \Nodes\Backend\Auth\Exception\ResetPasswordNoUserException
+     * @throws \Nodes\Backend\Auth\Exceptions\ResetPasswordNoUserException
      */
     public function sendResetPasswordEmail(array $conditions)
     {
