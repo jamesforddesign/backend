@@ -67,7 +67,6 @@ class ResetPasswordController extends IlluminateController
         $status = $this->resetPasswordRepository->sendResetPasswordEmail(['email' => $email]);
 
         if (empty($status)) {
-
             // Check if we should show error message if email does not exist, or just display
             // the same message as if the email was really sent
             $secureEmailCheck = config('nodes.backend.reset-password.secure_email_check', false);

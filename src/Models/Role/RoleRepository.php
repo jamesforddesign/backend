@@ -2,6 +2,7 @@
 
 namespace Nodes\Backend\Models\Role;
 
+use Illuminate\Support\Facades\Gate;
 use Nodes\Database\Eloquent\Repository as NodesRepository;
 use Nodes\Exceptions\Exception;
 
@@ -47,13 +48,13 @@ class RoleRepository extends NodesRepository
         $list = $this->getList();
 
         // If user is developer, give the full list
-        if (\Gate::allows('backend-developer')) {
+        if (Gate::allows('backend-developer')) {
             return $list;
         }
 
         // This means user is not developer, let's unset that option
         unset($list['developer']);
-        if (\Gate::allows('backend-super-admin')) {
+        if (Gate::allows('backend-super-admin')) {
             return $list;
         }
 
@@ -62,7 +63,7 @@ class RoleRepository extends NodesRepository
 
 
         // If user is admin, we return the list
-        if (\Gate::allows('backend-admin')) {
+        if (Gate::allows('backend-admin')) {
             return $list;
         }
 
@@ -124,12 +125,8 @@ class RoleRepository extends NodesRepository
     }
 
     /**
-     * Set role as default.
-     *
-     * @author Casper Rasmussen <cr@nodes.dk>
-     *
-     * @param \Nodes\Backend\Models\Role\Role $role
-     * @return \Exception
+     * @param Role $role
+     * @return \Exception|void
      */
     public function setDefault(Role $role)
     {
@@ -149,7 +146,6 @@ class RoleRepository extends NodesRepository
             // Commit transaction
             $this->commitTransaction();
         } catch (\Exception $e) {
-
             // Rollback and throw
             $this->rollbackTransaction();
 

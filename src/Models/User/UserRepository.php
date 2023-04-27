@@ -4,6 +4,7 @@ namespace Nodes\Backend\Models\User;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -101,7 +102,7 @@ class UserRepository extends Repository
         $user = $this->getByOrFail('email', $email);
 
         // Validate password
-        if (! \Hash::check($password, $user['password'])) {
+        if (! Hash::check($password, $user['password'])) {
             throw new InvalidPasswordException('Password was incorrect. Try again.');
         }
 
@@ -125,8 +126,8 @@ class UserRepository extends Repository
         // Apply search conditions if search is set
         if (Request::get('search', null)) {
             $query->where(function ($query) {
-                $query->orWhere('name', 'LIKE', '%'.Request::get('search').'%')
-                      ->orWhere('email', 'LIKE', '%'.Request::get('search').'%');
+                $query->orWhere('name', 'LIKE', '%' . Request::get('search') . '%')
+                      ->orWhere('email', 'LIKE', '%' . Request::get('search') . '%');
             });
         }
 

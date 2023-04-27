@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Nodes\Backend\Dashboard\Exceptions\MissingConfigException;
 use Nodes\Backend\Dashboard\Tiles\Charts\LineChart;
+use Nodes\Cache\Support\Facades\Cache;
 
 /**
  * Class Statistic.
@@ -62,7 +63,7 @@ abstract class Statistic extends LineChart
         }
 
         // Append query to url
-        $url .= '?'.http_build_query($query);
+        $url .= '?' . http_build_query($query);
 
         $chartData = [
             'id'     => $this->id,
@@ -72,7 +73,7 @@ abstract class Statistic extends LineChart
         ];
 
         // Look up in cache
-        $response = \Cache::get($url);
+        $response = Cache::get($url);
 
         $client = new Client([
             'timeout' => 5,
@@ -83,7 +84,7 @@ abstract class Statistic extends LineChart
             try {
                 $response = json_decode($client->get($url)->getBody(), true);
 
-                \Cache::put($url, $response, 60);
+                Cache::put($url, $response, 60);
             } catch (\Exception $e) {
                 return false;
             }

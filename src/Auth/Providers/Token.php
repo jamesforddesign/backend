@@ -51,6 +51,10 @@ class Token implements Provider
      */
     protected $tokenLifetime;
 
+    protected $userModel;
+
+    protected $token;
+
     /**
      * Constructor.
      *
@@ -85,7 +89,7 @@ class Token implements Provider
             'expire' => 'expire',
         ]);
         foreach ($columns as $key => $field) {
-            $this->tokenColumns[$key] = $this->tokenTable.'.'.$field;
+            $this->tokenColumns[$key] = $this->tokenTable . '.' . $field;
         }
 
         // Set lifetime of token
@@ -160,7 +164,7 @@ class Token implements Provider
     protected function updateTokenExpiry()
     {
         return (bool) $this->generateQuery()->update([
-            $this->getTokenColumn('expire') => Carbon::parse('now '.$this->getTokenLifetime()),
+            $this->getTokenColumn('expire') => Carbon::parse('now ' . $this->getTokenLifetime()),
         ]);
     }
 
@@ -175,9 +179,9 @@ class Token implements Provider
     {
         return $this->getUserModel()
                     ->select([
-                        $this->getUserTable().'.*',
+                        $this->getUserTable() . '.*',
                     ])
-                    ->join($this->getTokenTable(), $this->getTokenColumn('user_id'), '=', $this->getUserTable().'.id')
+                    ->join($this->getTokenTable(), $this->getTokenColumn('user_id'), '=', $this->getUserTable() . '.id')
                     ->where($this->getTokenColumn('token'), '=', $this->getToken());
     }
 
@@ -248,7 +252,7 @@ class Token implements Provider
             // This should never happen. If it does, then it means
             // that someone is a moron and has removed required
             // settings from the config files. Better safe than sorry.
-            throw new BadRequestHttpException;
+            throw new BadRequestHttpException();
         }
 
         return $this->tokenColumns[$column];

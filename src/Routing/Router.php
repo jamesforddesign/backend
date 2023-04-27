@@ -3,6 +3,7 @@
 namespace Nodes\Backend\Routing;
 
 use Illuminate\Routing\Router as IlluminateRouter;
+use Illuminate\Support\Str;
 
 /**
  * Class Router.
@@ -67,7 +68,7 @@ class Router
 
         // Check patterns and look for matches
         foreach ($patterns as $pattern) {
-            if (str_is($pattern, $uri)) {
+            if (Str::is($pattern, $uri)) {
                 return $this->activeClass;
             }
         }

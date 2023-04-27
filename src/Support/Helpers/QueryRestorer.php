@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Request;
 use Nodes\Backend\Support\FlashRestorer;
 
 if (!function_exists('query_restorer')) {
@@ -14,15 +16,18 @@ if (!function_exists('query_restorer')) {
     {
 
         // Store and return
-        if (!empty(\Request::all())) {
-            \Cookie::queue(\Cookie::make(md5(\Request::url() . '?' . http_build_query($params)),
-                json_encode(\Request::all()), 5));
+        if (!empty(Request::all())) {
+            Cookie::queue(Cookie::make(
+                md5(Request::url() . '?' . http_build_query($params)),
+                json_encode(Request::all()),
+                5
+            ));
 
             return false;
         }
 
         // Retrieve
-        $query = \Cookie::get(md5(\Request::url() . '?' . http_build_query($params)));
+        $query = Cookie::get(md5(Request::url() . '?' . http_build_query($params)));
 
         foreach ($blacklist as $key) {
             if (isset($query[$key])) {
@@ -32,7 +37,7 @@ if (!function_exists('query_restorer')) {
 
         // Redirect with queries
         if (!empty($query) && is_array($query)) {
-            return \Request::url() . '?' . http_build_query($query);
+            return Request::url() . '?' . http_build_query($query);
         }
 
         return false;

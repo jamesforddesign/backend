@@ -36,7 +36,7 @@ class Auth
                 ])->with('warning', 'Oops! You\'re not logged in.');
 
                 // Apply existing flash messages
-                (new FlashRestorer)->apply($redirectResponse);
+                (new FlashRestorer())->apply($redirectResponse);
 
                 // Redirect with cookie
                 return $redirectResponse;

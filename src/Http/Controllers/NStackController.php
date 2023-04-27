@@ -4,6 +4,7 @@ namespace Nodes\Backend\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class NStackController.
@@ -51,14 +52,16 @@ class NStackController extends Controller
 
         $default = !empty($config['defaults']['application']) ? $config['defaults']['application'] : 'default';
 
-        $application = \Request::get('application', $default);
+        $application = Request::get('application', $default);
 
         $credentials = !empty($config['credentials'][$application]) ? $config['credentials'][$application] : $config['credentials']; // For backwards compatibility
 
         // Validate NStack credentials
         if (empty($config['url']) || empty($credentials['appId']) || empty($credentials['masterKey'])) {
-            return redirect()->back()->with('error',
-                'NStack hook is not configured, setup keys in (config/nodes/backend/nstack.php)');
+            return redirect()->back()->with(
+                'error',
+                'NStack hook is not configured, setup keys in (config/nodes/backend/nstack.php)'
+            );
         }
 
         //http://nstack.test/deeplink/[APP_ID]/[MASTER_KEY]]

@@ -5,7 +5,9 @@ namespace Nodes\Backend\Auth\ResetPassword;
 use Carbon\Carbon;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
 use Nodes\Database\Eloquent\Repository as NodesRepository;
 
 /**
@@ -37,7 +39,7 @@ class ResetPasswordRepository extends NodesRepository
     {
         $this->setupRepository($model);
         $this->userModel = $container['nodes.backend.auth.model'];
-        $this->errors = new MessageBag;
+        $this->errors = new MessageBag();
     }
 
     /**
@@ -101,7 +103,7 @@ class ResetPasswordRepository extends NodesRepository
         $token = $this->generateResetPasswordToken($user);
 
         // Send e-mail with instructions on how to reset password
-        \Mail::send([
+        Mail::send([
             'html' => config('nodes.backend.reset-password.views.html', 'nodes.backend::reset-password.emails.html'),
             'text' => config('nodes.backend.reset-password.views.text', 'nodes.backend::reset-password.emails.text'),
         ], [
@@ -130,7 +132,7 @@ class ResetPasswordRepository extends NodesRepository
     protected function generateResetPasswordToken(Model $user)
     {
         // Generate new token using Laravel's encryption key
-        $token = hash_hmac('sha256', str_random(40), config('app.key'));
+        $token = hash_hmac('sha256', Str::random(40), config('app.key'));
 
         // Expire timestamp
         $expire = Carbon::now()->addMinutes(config('nodes.backend.reset-password.expire', 60));
@@ -162,7 +164,7 @@ class ResetPasswordRepository extends NodesRepository
         // Retrieve user by e-mail
         $user = $this->userModel->where('email', '=', $email)->first();
         if (empty($user)) {
-            $this->errors('no-user-found-by-email', 'Could not find any user with e-mail: ['.$email.']');
+            $this->errors('no-user-found-by-email', 'Could not find any user with e-mail: [' . $email . ']');
 
             return false;
         }

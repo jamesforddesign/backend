@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Request;
 use Nodes\Backend\Support\FlashRestorer;
 use Nodes\Database\Exceptions\EntityNotFoundException;
 use Illuminate\Support\Facades\Cookie;
+use Symfony\Component\Console\Input\Input;
 
 /**
  * Class AuthController.
@@ -39,23 +40,21 @@ class AuthController extends Controller
      */
     public function login()
     {
-        try {
-            $redirectUrl = \Input::get('redirect_url');
-        } catch (\Throwable $e) {
-            $redirectUrl = \Request::input('redirect_url');
-        }
+
+        $redirectUrl = Request::input('redirect_url', false);
+
         if ($redirectUrl) {
-            \Cookie::queue(\Cookie::make('url_to_redirect_to_after_user_login', $redirectUrl, 5));
+            Cookie::queue(Cookie::make('url_to_redirect_to_after_user_login', $redirectUrl, 5));
         } elseif ($redirectUrl = session('url_to_redirect_to_after_user_login')) {
-            \Cookie::queue(\Cookie::make('url_to_redirect_to_after_user_login', $redirectUrl, 5));
+            Cookie::queue(Cookie::make('url_to_redirect_to_after_user_login', $redirectUrl, 5));
         } else {
-            \Cookie::queue(\Cookie::make('url_to_redirect_to_after_user_login', null, 5));
+            Cookie::queue(Cookie::make('url_to_redirect_to_after_user_login', null, 5));
         }
 
         // If user is already authenticated,
         // redirect user to dashboard
         if (backend_user_check()) {
-            return $this->redirectSuccess(new FlashRestorer);
+            return $this->redirectSuccess(new FlashRestorer());
         }
 
         return view('nodes.backend::login.default');
@@ -138,8 +137,10 @@ class AuthController extends Controller
         }
 
         // Check the passed token vs a hash of email, constant and server token for current build
-        if (hash('sha256', sprintf(env('NODES_MANAGER_SALT'), Request::get('email'), env('NODES_MANAGER_TOKEN'))) !=
-            Request::get('token')) {
+        if (
+            hash('sha256', sprintf(env('NODES_MANAGER_SALT'), Request::get('email'), env('NODES_MANAGER_TOKEN'))) !=
+            Request::get('token')
+        ) {
             return redirect()->route('nodes.backend.login.form')->with('error', 'Manager token did not match');
         }
 
@@ -209,8 +210,10 @@ class AuthController extends Controller
             } else {
                 // redirect to success route from config
                 $route = config('nodes.backend.auth.routes.success');
-                $redirectResponse = !empty($route) ? redirect()->route($route)->with('success',
-                    'Logged in as: ' . $backendUser->email) : redirect()->to('/admin');
+                $redirectResponse = !empty($route) ? redirect()->route($route)->with(
+                    'success',
+                    'Logged in as: ' . $backendUser->email
+                ) : redirect()->to('/admin');
             }
         }
 

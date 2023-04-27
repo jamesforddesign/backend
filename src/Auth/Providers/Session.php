@@ -38,6 +38,11 @@ class Session implements Provider
      */
     protected $tokenRetrievalAttempted = false;
 
+    protected $lastAttempted;
+
+    protected $auth;
+    protected $viaRemember;
+
     /**
      * Session constructor.
      *
