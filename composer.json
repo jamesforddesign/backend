@@ -43,7 +43,7 @@
     },
     "autoload": {
         "psr-4": {
-           "Nodes\\Backend\\": "src/"
+           "\\Nodes\\Backend\\": "src/"
         },
         "files": [
             "src/Support/Helpers/Auth.php",
