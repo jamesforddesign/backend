@@ -31,9 +31,9 @@
     ],
     "require": {
         "composer-plugin-api": "2.*",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^10.0",
         "laravelcollective/html": "^v6.3.0",
-        "nodes/core": "dev-php-8-1",
+        "nodes/core": "dev-laravel-shift-2025",
         "nodes/assets": "dev-php-8-1",
         "nodes/database": "dev-php-8-1",
         "nodes/validation": "dev-php-8-1",
