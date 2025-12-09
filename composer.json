@@ -32,7 +32,6 @@
     "require": {
         "composer-plugin-api": "2.*",
         "laravel/framework": "^11.0",
-        "laravelcollective/html": "^v6.3.0",
         "nodes/core": "dev-laravel-shift-2025",
         "nodes/assets": "dev-laravel-shift-2025@dev",
         "nodes/database": "dev-laravel-shift-2025",
