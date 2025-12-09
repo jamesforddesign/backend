@@ -37,7 +37,7 @@
         "nodes/assets": "dev-laravel-shift-2025@dev",
         "nodes/database": "dev-laravel-shift-2025",
         "nodes/validation": "dev-laravel-shift-2025",
-        "nodes/cache": "dev-php-8-1",
+        "nodes/cache": "dev-laravel-shift-2025",
         "nodes/bugsnag": "dev-php-8-1",
         "nodes/counter-cache": "dev-php-8-1"
     },
