@@ -39,7 +39,7 @@
         "nodes/validation": "dev-laravel-shift-2025",
         "nodes/cache": "dev-laravel-shift-2025",
         "nodes/bugsnag": "dev-laravel-shift-2025",
-        "nodes/counter-cache": "dev-php-8-1"
+        "nodes/counter-cache": "dev-laravel-shift-2025"
     },
     "autoload": {
         "psr-4": {
