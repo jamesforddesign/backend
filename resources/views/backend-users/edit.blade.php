@@ -19,10 +19,18 @@
 
 @section('content')
         @if (!empty($user))
-            {!! Form::model($user, ['method' => 'patch', 'files' => true, 'route' => ['nodes.backend.users.update']]) !!}
+            {{ html()->modelFrom('patch')
+                ->route('nodes.backend.users.update')
+                ->attribute('enctype', 'multipart/form-data')
+                ->open()
+            }}
             <input type="hidden" name="id" value="{{ $user->id }}">
         @else
-            {!! Form::open(['method' => 'post', 'files' => true, 'route' => 'nodes.backend.users.store']) !!}
+            {{ html()->form()
+                ->route('nodes.backend.users.store')
+                ->attribute('enctype', 'multipart/form-data')
+                ->open()
+            }}
         @endif
 
         <div class="row">
@@ -32,44 +40,43 @@
                 <div class="margin-vertical-sm">
                     {{-- Name --}}
                     <div class="form-group">
-                        <label for="backendUserFormName">Name</label>
+                        <label for="name">Name</label>
                         <div class="@if($errors->has('name')) has-error @endif}}">
-                            {!! Form::text('name', null, ['id' => 'backendUserFormName', 'class' => 'form-control']) !!}
+                            {{ html()->text('name')
+                                ->class('form-control')
+                            }}
                         </div>
                     </div>
 
                     {{-- E-mail --}}
                     <div class="form-group">
-                        <label for="backendUserFormEmail">E-mail</label>
+                        <label for="email">E-mail</label>
                         <div class="@if($errors->has('email')) has-error @endif}}">
-                            {!!
-                                Form::email(
-                                    'email',
-                                    null,
-                                    [
-                                        'id' => 'backendUserFormEmail',
-                                        'class' => 'form-control',
-                                        'autocomplete' => config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off'
-                                    ]
-                                )
-                            !!}
+                            {{ html()->email('email')
+                                ->class('form-control')
+                                ->attribute('autocomplete', config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off')
+                            }}
                         </div>
                     </div>
 
                     {{-- Role --}}
                     <div class="form-group">
-                        <label for="backendUserFormRole">Role</label>
+                        <label for="user_role">Role</label>
                         @if($errors->has('user_role'))
-                            {!! Form::select('user_role', $roles, !empty($user) ? $user->user_role : $roleDefault, ['id' => 'backendUserFormRole', 'class' => 'form-control has-error']) !!}
+                            {{ html()->select('user_role', $roles, !empty($user) ? $user->user_role : $roleDefault)
+                                ->class('form-control has-error')
+                            }}
                         @else
-                            {!! Form::select('user_role', $roles, !empty($user) ? $user->user_role : $roleDefault, ['id' => 'backendUserFormRole', 'class' => 'form-control']) !!}
+                            {{ html()->select('user_role', $roles, !empty($user) ? $user->user_role : $roleDefault)
+                                ->class('form-control')
+                            }}
                         @endif
                     </div>
                     @if(empty($user))
                         <div class="form-group">
                             <input name="send_mail" value="false" type="hidden">
                             <label>
-                                {!! Form::checkbox('send_mail', true, true, ['id' => 'backendUserFormSendMail']) !!} Send email with information
+                                {{ html()->checkbox('send_mail') }} Send email with information
                             </label>
                         </div>
                     @endif
@@ -99,17 +106,21 @@
                 <div class="margin-top">
                     {{-- Password --}}
                     <div class="form-group">
-                        <label for="backendUserFormPassword">Password</label>
+                        <label for="password">Password</label>
                         <div class="@if($errors->has('password')) has-error @endif}}">
-                            {!! Form::password('password', ['id' => 'backendUserFormPassword', 'class' => 'form-control']) !!}
+                            {{ html()->password('password')
+                                ->class('form-control')
+                            }}
                         </div>
                     </div>
 
                     {{-- Password confirm --}}
                     <div class="form-group">
-                        <label for="backendUserFormRepeatPassword">Repeat password</label>
+                        <label for="password_confirmation">Repeat password</label>
                         <div class="@if($errors->has('password')) has-error @endif}}">
-                            {!! Form::password('password_confirmation', ['id' => 'backendUserFormRepeatPassword', 'class' => 'form-control']) !!}
+                            {{ html()->password('password_confirmation')
+                                ->class('form-control')
+                            }}
                         </div>
                     </div>
 
@@ -119,7 +130,7 @@
                         <input name="should_reset_password" value="false" type="hidden">
 
                         <label class="@if($errors->has('change_password')) has-error @endif}}">
-                            {!! Form::checkbox('change_password', true, empty($user) ? true : $user->change_password, ['id' => 'backendUserFormResetPwOnLogin']) !!} Reset password on login
+                            {{ html()->checkbox('change_password', true, empty($user) ? true : $user->change_password) }} Reset password on login
                         </label>
 
                     </div>
@@ -133,9 +144,11 @@
                 <hr>
                 <div class="margin-vertical-sm">
                     <div class="form-group">
-                        <label for="companyImage">Upload image</label>
+                        <label for="image">Upload image</label>
                         <div class="@if ($errors->has('image')) has-error @endif">
-                            {!! Form::file('image', null, ['id' => 'image', 'class' => 'form-control']) !!}
+                            {{ html()->file('image')
+                                ->class('form-control')
+                            }}
                         </div>
                     </div>
                     @if (!empty($user) && !empty($user->getImageUrl()))
@@ -156,5 +169,5 @@
                 @endif
             </div>
         </div>
-        {!! Form::close() !!}
+        {{ html()->form()->close() }}
 @endsection
