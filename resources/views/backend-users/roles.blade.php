@@ -89,7 +89,10 @@
                     </button>
                     <h4 class="modal-title" id="roleModalLabel">Create role</h4>
                 </header>
-                {!! Form::open(['method' => 'POST', 'route' => 'nodes.backend.users.roles.store']) !!}
+                {{ html()->form()
+                    ->route('nodes.backend.users.roles.store')
+                    ->open()
+                }}
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="roleName" class="sr-only">Role title</label>
@@ -100,7 +103,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Create role</button>
                 </div>
-                {!! Form::close() !!}
+                {{ html()->form()->close() }}
             </div>
         </div>
     </div>

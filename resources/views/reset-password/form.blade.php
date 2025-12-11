@@ -5,27 +5,23 @@
 @endsection
 
 @section('feedback-message')
-    {!! Form::open(['method' => 'post', 'route' => 'nodes.backend.reset-password.token']) !!}
+    {{ html()->form()->route('nodes.backend.reset-password.token')->open() }}
     <div class="form-group action-wrapper">
-        {!! Form::label('login-email', 'E-mail address', ['class' => 'sr-only']) !!}
-        {!!
-            Form::email(
-                'email',
-                Session::get('email'),
-                [
-                    'id' => 'login-email',
-                    'class' => 'form-control',
-                    'placeholder' => 'E-mail address',
-                    'autocomplete' => config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off'
-                ]
-            )
-        !!}
+        {{ html()->label('E-mail address', 'email')
+            ->class('sr-only')
+        }}
+        {{ html()->email('email', Session::get('email'))
+            ->class('form-control')
+            ->attributes(['placeholder' => 'E-mail address', 'autocomplete' => config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off'])
+        }}
         <span class="action-wrap-action action-wrap-right">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
         </span>
     </div>
     <div class="form-group">
-        {!! Form::submit('Reset my password', ['class' => 'btn btn-primary form-control']) !!}
+        {{ html()->submit('Reset my password')
+            ->class('btn btn-primary form-control')
+        }}
     </div>
-    {!! Form::close() !!}
+    {{ html()->form()->close() }}
 @endsection

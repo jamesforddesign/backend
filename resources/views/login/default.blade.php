@@ -20,36 +20,38 @@
 
                 @include('nodes.backend::partials.alerts')
 
-                {!! Form::open(['method' => 'post', 'route' => 'nodes.backend.login.authenticate']) !!}
+                {{ html()->form()
+                    ->route('nodes.backend.login.authenticate')
+                    ->open()
+                }}
                     <div class="form-group action-wrapper">
-                        {!! Form::label('login-email', 'E-mail address', ['class' => 'sr-only']) !!}
-                        {!!
-                            Form::email(
-                                'email',
-                                Request::get('email') ? Request::get('email') : Session::get('email'),
-                                 [
-                                    'id' => 'login-email',
-                                    'class' => 'form-control',
-                                    'placeholder' => 'E-mail address',
-                                    'autocomplete' => config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off'
-                                ]
-                            )
-                        !!}
+                        {{  html()->label('E-mail address', 'email')
+                            ->class('sr-only')
+                        }}
+                        {{ html()->email('email', Request::get('email') ? Request::get('email') : Session::get('email'))
+                            ->class('form-control')
+                            ->attributes(['placeholder' => 'E-mail address', 'autocomplete' => config('nodes.backend.general.disable_autocomplete', false) ? 'on' : 'off'])
+                        }}
                         <span class="action-wrap-action action-wrap-right">
                             <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="form-group action-wrapper">
-                        {!! Form::label('login-password', 'Password', ['class' => 'sr-only']) !!}
-                        {!! Form::password('password', ['id' => 'login-password', 'class' => 'form-control', 'placeholder' => 'Password']) !!}
+                        {{ html()->label('Password', 'password')
+                            ->class('sr-only')
+                        }}
+                        {{ html()->password('password')
+                            ->class('form-control')
+                            ->attribute('placeholder', 'Password')
+                        }}
                         <span class="action-wrap-action action-wrap-right">
                             <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="form-group clearfix">
                         <div class="checkbox pull-left">
-                            <label for="nodes-login-remember">
-                                {!! Form::checkbox('remember', true, null, ['id' => 'nodes-login-remember']) !!}
+                            <label for="remember">
+                                {{ html()->checkbox('remember') }}
                                 Remember me
                             </label>
                         </div>
@@ -58,9 +60,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Login', ['class' => 'btn btn-primary form-control']) !!}
+                        {{ html()->submit('Login')
+                            ->class('btn btn-primary form-control')
+                        }}
                     </div>
-                {!! Form::close() !!}
+                {{ html()->form()->close() }}
 
             </div>
         </div>
