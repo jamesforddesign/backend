@@ -2,7 +2,7 @@
      {!! isset($file) ? 'data-file="' . $file . '"' : '' !!}
      {!! !empty($disablePreview) ? 'data-disable-preview="' . $disablePreview . '"' : '' !!}
     class="form-group input-group file-picker">
-    <label for="backendUserFormImage">{{ $label }}</label>
+    <label for="{{ !empty($elementName) ? $elementName : 'image' }}">{{ $label }}</label>
     <div class="file-picker__inner">
         <div class="file-picker__zone" style="{!! isset($thumbnailWidth) ? 'width: ' . $thumbnailWidth . 'px;' : 'width: 40px;' !!}{!! isset($thumbnailHeight) ? 'height: ' . $thumbnailHeight . 'px;' : 'height: 40px;' !!}{!! (isset($thumbnailHeight) || isset($thumbnailHeight)) ? 'flex: none;' : '' !!}">
             <img src="" class="file-picker__preview img-responsive img-thumb">
@@ -14,7 +14,7 @@
             </button>
         </div>
         <div class="file-picker__input-group">
-            {!! Form::file(!empty($elementName) ? $elementName : 'image', ['id' => !empty($elementId) ? $elementId : 'backendUserFormImage', 'class' => 'file-picker__file-input']) !!}
+            {{ html()->file(!empty($elementName) ? $elementName : 'image')->class('file-picker__file-input') }}
             <div class="input-group">
                     <span class="input-group-btn">
                         <span class="file-input__choose btn btn-default">
