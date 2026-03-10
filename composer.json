@@ -31,14 +31,14 @@
     ],
     "require": {
         "composer-plugin-api": "2.*",
-        "laravel/framework": "^11.0",
-        "nodes/core": "dev-laravel-shift-2025",
-        "nodes/assets": "dev-laravel-shift-2025@dev",
-        "nodes/database": "dev-laravel-shift-2025",
-        "nodes/validation": "dev-laravel-shift-2025",
-        "nodes/cache": "dev-laravel-shift-2025",
-        "nodes/bugsnag": "dev-laravel-shift-2025",
-        "nodes/counter-cache": "dev-laravel-shift-2025"
+        "laravel/framework": "^11.0|^12.0",
+        "nodes/core": "dev-laravel-12-update",
+        "nodes/assets": "dev-laravel-12-update@dev",
+        "nodes/database": "dev-laravel-12-update",
+        "nodes/validation": "dev-laravel-12-update",
+        "nodes/cache": "dev-laravel-12-update",
+        "nodes/bugsnag": "dev-laravel-12-update",
+        "nodes/counter-cache": "dev-laravel-12-update"
     },
     "autoload": {
         "psr-4": {
