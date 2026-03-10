@@ -1,11 +1,6 @@
 @extends('nodes.backend::base')
 
 @section('layout')
-    @if(config('nodes.backend.manager.active', true))
-        <a href="{{ route('nodes.backend.login.sso') }}" id="alternative-login" class="sso">
-            <span class="sr-only">Nodes SSO</span>
-        </a>
-    @endif
 
     <div class="layout vertical fit page-login">
         <div id="login" class="panel panel-default">
